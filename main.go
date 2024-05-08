@@ -1,12 +1,14 @@
 package main
 
 import (
-	"authorization/src/api"
-	"authorization/src/modules"
+	"authorization/api"
+	"authorization/database"
+	"authorization/modules"
 )
 
 func main() {
 	api.Init()
-	modules.InitModule()
+	db := database.Connection()
+	modules.InitModule(db)
 	select {}
 }
