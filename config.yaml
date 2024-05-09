@@ -1,0 +1,11 @@
+postgresql:
+  host: localhost
+  port: "5432"
+  username: ais
+  password: 896325
+  database: buro_nest
+
+app:
+  host: localhost
+  port: "2325"
+  network: "tcp"
