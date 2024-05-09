@@ -3,12 +3,12 @@ package utils
 import "time"
 
 type BaseEntity struct {
-	Id        int       `gorm:"id"`
-	CreatedAt time.Time `gorm:"created_at"`
-	UpdatedAt time.Time `gorm:"updated_at"`
+	Id        int       `gorm:"primaryKey"`
+	CreatedAt time.Time `gorm:"autoCreateTime"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 }
 
-/*// BeforeInsert вызывается перед вставкой новой записи в базу данных
+// BeforeInsert вызывается перед вставкой новой записи в базу данных
 func (b *BaseEntity) BeforeInsert() error {
 	b.CreatedAt = time.Now()
 	b.UpdatedAt = time.Now()
@@ -19,4 +19,4 @@ func (b *BaseEntity) BeforeInsert() error {
 func (b *BaseEntity) BeforeUpdate() error {
 	b.UpdatedAt = time.Now()
 	return nil
-}*/
+}

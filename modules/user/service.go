@@ -9,8 +9,6 @@ import (
 	"gin-gorm/modules/user/models"
 	"gin-gorm/utils"
 	"gin-gorm/utils/filter"
-
-	"time"
 )
 
 type Service struct {
@@ -92,14 +90,12 @@ func (s *Service) FindOne(ctx context.Context, userId int) (models.User, error) 
 }
 
 func (s *Service) Update(ctx context.Context, updateUserDto dto.Update, userId int) (entity.User, error) {
-	currentTime := time.Now()
+
 	userEntity := entity.User{
-		BaseEntity: &utils.BaseEntity{UpdatedAt: currentTime},
-		Username:   updateUserDto.Username,
-		Password:   updateUserDto.Password,
-		Role:       updateUserDto.Role,
+		Username: updateUserDto.Username,
+		Password: updateUserDto.Password,
+		Role:     updateUserDto.Role,
 		Profile: profile_entity.Profile{
-			BaseEntity: &utils.BaseEntity{UpdatedAt: currentTime},
 			FirstName:  updateUserDto.FirstName,
 			MiddleName: updateUserDto.MiddleName,
 			LastName:   updateUserDto.LastName,
