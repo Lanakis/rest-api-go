@@ -46,7 +46,11 @@ func (r *UserRepository) FindOne(ctx context.Context, userId int) (entity.User, 
 }
 
 func (r *UserRepository) Update(ctx context.Context, user entity.User, userId int) (entity.User, error) {
+	// Обновление пользователя
 	_ = r.Db.WithContext(ctx).Model(&user).Where("id = ?", userId).Updates(user)
+
+	// Обновление профиля
+	_ = r.Db.WithContext(ctx).Model(&user.Profile).Where("user_id = ?", userId).Updates(user.Profile)
 	foundedUser, err := r.FindOne(ctx, userId)
 	if err != nil {
 		return foundedUser, utils.NewAppError(err, "Can't exec", "")

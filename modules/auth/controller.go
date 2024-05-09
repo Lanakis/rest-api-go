@@ -12,17 +12,17 @@ func RegisterHandlers(authService *Service, router *gin.Engine) {
 	router.POST("/auth", authController.Login)
 }
 
-type AuthController struct {
+type Controller struct {
 	AuthService *Service
 }
 
-func NewAuthController(authService *Service) *AuthController {
-	return &AuthController{
+func NewAuthController(authService *Service) *Controller {
+	return &Controller{
 		AuthService: authService,
 	}
 }
 
-func (c *AuthController) Login(ctx *gin.Context) {
+func (c *Controller) Login(ctx *gin.Context) {
 	var data dto.SignAuthDto
 	if err := ctx.ShouldBindJSON(&data); err != nil {
 		ctx.JSON(http.StatusBadRequest, gin.H{"error": "Invalid request body"})
@@ -38,7 +38,7 @@ func (c *AuthController) Login(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{"token": token})
 }
 
-func (c *AuthController) Profile(ctx *gin.Context) {
+func (c *Controller) Profile(ctx *gin.Context) {
 	user := ctx.MustGet("user").(*User)
 	ctx.JSON(http.StatusOK, user)
 }

@@ -11,7 +11,6 @@ import (
 	"gin-gorm/modules/auth/dto"
 	"gin-gorm/modules/user/entity"
 	"gin-gorm/modules/user/models"
-	"gin-gorm/utils"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strings"
@@ -89,14 +88,14 @@ func (s *Service) SignIn(ctx context.Context, dto dto.SignAuthDto) (string, erro
 		return "", err // Возвращаем ошибку, если произошла ошибка при поиске пользователя
 	}
 
-	if el.Id == 0 {
-		return "", errors.New("user not found") // Возвращаем ошибку, если пользователь не найден
-	}
-	hashEnteredPassword := utils.HashPassword(dto.Password)
-
-	if hashEnteredPassword != el.Password {
-		return "", errors.New("invalid password") // Возвращаем ошибку, если пароль неверен
-	}
+	//if el.Id == 0 {
+	//	return "", errors.New("user not found") // Возвращаем ошибку, если пользователь не найден
+	//}
+	//hashEnteredPassword := utils.HashPassword(dto.Password)
+	//
+	//if hashEnteredPassword != el.Password {
+	//	return string(rune(el.Id)), utils.NewAppError(err, "Invalid password match", "auth service")
+	//}
 
 	return s.Login(ctx, el)
 }

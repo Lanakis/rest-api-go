@@ -3,15 +3,15 @@ package models
 import "time"
 
 type User struct {
-	Id         int
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-	Username   string
-	Password   string `json:"-"`
-	Role       string
-	FirstName  string
-	MiddleName string
-	LastName   string
-	Age        int
-	Head       bool
+	Id         int       `json:"id"`
+	CreatedAt  time.Time `json:"created_at"`
+	UpdatedAt  time.Time `json:"updated_at"`
+	Username   string    `json:"username"`
+	Password   string    `json:"-"`
+	Role       string    `json:"role"`
+	FirstName  string    `json:"first_name"`
+	MiddleName string    `json:"middle_name"`
+	LastName   string    `json:"last_name"`
+	Age        int       `json:"age"`
+	Head       bool      `json:"head"`
 }
